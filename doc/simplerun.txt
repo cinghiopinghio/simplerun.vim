@@ -1,0 +1,41 @@
+*simplerun.txt*  Run commands in a terminal
+
+Author:  CinghioPinghio
+License: Same terms as Vim itself (see |license|)
+
+Send commands to a terminal in a vertical split window (for now).
+
+=========================================================================
+CONFIGURATION:
+
+                                                    *g:simplerun_commands*
+
+    define default runner for each filetype
+
+>
+    :let g:simplerun_commands = {
+                \ 'python': 'python',
+                \ 'sh': 'bash',
+                \ 'javascript': 'node',
+                \ 'make': 'make --always-make --silent',
+                \ 'lua': 'lua'
+                \ }
+<
+
+==========================================================================
+FUNTIONS:
+
+*simplerun#toggle(command)*
+    Open or close the terminal and run the optional `command` on it.
+    The terminal will be cleared at each run.
+
+===========================================================================
+EXAMPLE:
+
+Custom command:
+
+>
+    command! Top call simplerun#toggle("top")
+<
+
+ vim:tw=78:et:ft=help:norl:
