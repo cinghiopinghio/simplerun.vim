@@ -1,4 +1,5 @@
 function! simplerun#toggle(...)
+    " Open or close the terminal
 
     " create a buffer list
     if !exists('b:simplerun_buflist')
@@ -18,8 +19,7 @@ function! simplerun#toggle(...)
     endif
 
     " create a vsplit with a terminal
-    vsplit
-    exec 'terminal ' . l:command
+    call simplerun#create_window(l:command)
     let l:thisbuf = winbufnr(0)
 
     " stay at the bottom
@@ -34,7 +34,7 @@ endfunction
 
 
 function! simplerun#getCommand()
-
+    " get the command to be run on the terminal
     if has_key(g:simplerun_commands, &filetype)
         let cmd = g:simplerun_commands[&filetype] . ' ' . expand('%')
     else
@@ -43,3 +43,17 @@ function! simplerun#getCommand()
 
     return cmd
 endfunction
+
+
+function! simplerun#create_window(command)
+    " Open a window from user function of vsplit
+    " run a command in it
+    if exists('g:simplerun_winfunc')
+        execute 'call ' . g:simplerun_winfunc . '("'. a:command . '")'
+        stopinsert
+    else
+        vsplit
+        exec 'terminal ' . a:command
+    endif
+endfunction
+

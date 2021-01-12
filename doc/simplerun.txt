@@ -21,6 +21,11 @@ CONFIGURATION:
                 \ 'lua': 'lua'
                 \ }
 <
+                                                    *g:simplerun_winfunc*
+
+    Set to a function to open a new window.
+    It accept as argument the command to be run.
+    By default a `vsplit` windows is spawned.
 
 ==========================================================================
 FUNTIONS:
@@ -30,12 +35,21 @@ FUNTIONS:
     The terminal will be cleared at each run.
 
 ===========================================================================
-EXAMPLE:
+EXAMPLES:
 
 Custom command:
 
 >
     command! Top call simplerun#toggle("top")
+<
+Open a new floating window with `Floaterm`
+
+>
+    function! Simplerun_winfunc(command)
+        execute 'FloatermNew ' . a:command
+    endfunction
+
+    let g:simplerun_winfunc='Simplerun_winfunc'
 <
 
  vim:tw=78:et:ft=help:norl:
