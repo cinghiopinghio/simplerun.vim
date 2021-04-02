@@ -10,7 +10,7 @@ let s:simplerun_cmds = {
             \ 'python': 'python',
             \ 'sh': 'bash',
             \ 'javascript': 'node',
-            \ 'make': 'make --always-make --silent',
+            \ 'make': 'make --always-make --silent -f',
             \ 'lua': 'lua'
             \ }
 
