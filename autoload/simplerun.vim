@@ -57,3 +57,18 @@ function! simplerun#create_window(command)
     endif
 endfunction
 
+
+function! simplerun#toggle_on_save(...)
+    if exists('b:simplerun_on_save') && a:0 == 0
+        augroup simplerun_on_save
+            au!
+        augroup END
+        unlet b:simplerun_on_save
+    else
+        let b:simplerun_on_save=a:000
+        augroup simplerun_on_save
+            au!
+            au BufWritePost <buffer> :call call("simplerun#toggle", b:simplerun_on_save)
+        augroup END
+    endif
+endfunction
