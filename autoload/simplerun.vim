@@ -36,7 +36,7 @@ endfunction
 function! simplerun#getCommand()
     " get the command to be run on the terminal
     if has_key(g:simplerun_commands, &filetype)
-        let cmd = 'time ' . g:simplerun_commands[&filetype] . ' ' . expand('%')
+        let cmd =  'cd ' .. expand('%:p:h') .. '; time ' . g:simplerun_commands[&filetype] . ' ' . expand('%:p')
     else
         let cmd = 'make'
     endif
