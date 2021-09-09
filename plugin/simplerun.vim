@@ -15,7 +15,7 @@ let s:simplerun_cmds = {
             \ }
 
 if exists("g:simplerun_commands")
-    call extend(g:simplerun_commands, s:simplerun_cmds, 1)
+    call extend(g:simplerun_commands, s:simplerun_cmds, 'keep')
 else
     let g:simplerun_commands = s:simplerun_cmds
 endif
